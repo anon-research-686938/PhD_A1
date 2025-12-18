@@ -10,11 +10,11 @@ library(tidyverse)
 ##############################################################################
 
 # General path to access data
-path_data <- "C:/Users/data/"
+path_data <- "/data/"
 
 # Path to annotation tables from both study areas
-path_annot_LAP <- paste0(path_data,"annotations/validation_table_HH.csv") 
-path_annot_PYR <- paste0(path_data,"annotations/validation_table_MT.csv")
+path_annot_LAP <- paste0(path_data,"validation_table_KILPIS.csv") 
+path_annot_PYR <- paste0(path_data,"validation_table_CAMPAN.csv")
 
 pr_thresholds = c(0.9) # Probability threshold to define SSCTs
 
@@ -24,15 +24,12 @@ subset_sizes <- seq(10, 100, by = 2) # Range of sizes for bootstrap replicates
 
 n_boot <- 3000  # Number of bootstrap replicates per subset size
 
-# Name of the CSV file for results - used later in "Phd_A1_SUB_Fig2.R"
-output_filename = paste0("df_boostrapping_SSCT_alldataset_", n_boot, "Nboot.csv")
-
 ##############################################################################
 ## Open and organize datasets ##
 ##############################################################################
 
 # Open the general species list
-list_sp <- read_excel(paste0(path_data,"raw_data/birdnet_species_list/PhD_A1_species_list.xlsx"))
+list_sp <- read_excel(paste0(path_data,"A1_species_list.xlsx"))
 
 # Create a species column in common for list_df and df_annot
 list_sp$species_u <- gsub(" ","_",list_sp$species)
@@ -135,5 +132,5 @@ for (i in 1:nrow(list_sp_filt)){
 output <- bind_rows(results)
 
 # Save results
-output_path = paste0("C:/Users/data/annotations/",output_filename,"")
-write.csv(output, output_path, row.names = FALSE)
+output_path = paste0("A1_bootstrap_resampling.csv")
+#write.csv(output, output_path, row.names = FALSE)

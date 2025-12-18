@@ -14,7 +14,7 @@ library(patchwork)
 ##############################################################################
 
 # General path to access data
-path_data <- "C:/Users/data/"
+path_data <- "/data/"
 
 sensitivity <- 1.5 # Sensitivity value set on BirdNET
 
@@ -23,7 +23,7 @@ sensitivity <- 1.5 # Sensitivity value set on BirdNET
 ##############################################################################
 
 # Open the results from the bootstrap resampling process
-output <- read.csv(paste0(path_data,"annotations/df_boostrapping_SSCT_alldataset_3000Nboot.csv"))
+output <- read.csv(paste0(path_data,"A1_bootstrap_resampling.csv"))
 
 # Turn logit scores into confidence values
 output_conf <- output %>%
@@ -173,8 +173,6 @@ compute_stability_per_species <- function(df, window = 10, threshold = 0.01) {
     }) %>%
     ungroup()
 }
-
-
 
 ##############################################################################
 ## Figure 2: Plot representation of both GAM models ##
