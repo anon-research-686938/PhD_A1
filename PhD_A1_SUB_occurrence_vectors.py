@@ -15,13 +15,13 @@ import seaborn as sns
 study_area = ["CAMPAN","KILPIS"][1]
 
 # General path to access data
-path_data = "C:/Users/data/" 
+path_data = "/data/" 
 
 # Specific path to BirdNET raw occurrences
-path_birdnet = path_data + "raw_data/birdnet_occurrences_RAW/df_birdnet_" + study_area + "_raw_LowConfidence.csv"
+path_birdnet = path_data + "raw_detections/A1_birdnet_"+ study_area +".csv"
 
 # Specific path to the list of SSCT computed for each bootstrrap replicate
-path_boot = path_data + "annotations/df_boostrapping_SSCT_alldataset_3000Nboot.csv"
+path_boot = path_data + "A1_bootstrap_resampling.csv"
 
 # Vector for the different subset sizes tested 
 subset_sizes = np.arange(20,102,2)
@@ -128,8 +128,8 @@ if study_area == "CAMPAN":
     print(df_hourly.shape)
     
     # Save df_hourly under csv format for later 
-    filename = "df_"+study_area+"_hourly_occurrences_VS_SubsetSize_reduced.csv"
-    df_hourly.to_csv(path_data+"A1_downstream_communities/"+filename,index=False)
+    filename = "A1_hourly_probability_"+study_area+".csv"
+    df_hourly.to_csv(path_data+"probability_vectors/"+filename,index=False)
 
 elif study_area == "KILPIS":
     
@@ -155,8 +155,8 @@ elif study_area == "KILPIS":
     print(df_weekly.shape)
     
     # Save df_results under csv format for later 
-    filename = "df_"+study_area+"_weekly_occurrences_VS_SubsetSize_reduced.csv"
-    df_weekly.to_csv(path_data+"A1_downstream_communities/"+filename,index=False)
+    filename = "A1_weekly_probability_"+study_area+".csv"
+    df_weekly.to_csv(path_data+"probability_vectors/"+filename,index=False)
 
 
 

@@ -19,10 +19,10 @@ import matplotlib
 study_area = ["CAMPAN","KILPIS"][0]
 
 # General path to access data
-path_data = "C:/Users/data/" 
+path_data = "/data/" 
 
 # Name of the CSV file containing the probability of occurrence vectors
-filename = "df_"+study_area+"_hourly_occurrences_VS_SubsetSize_reduced.csv"
+filename = "A1_hourly_probability_CAMPAN.csv"
 
 # Select only 5 subset sizes out of the whole vector
 sizes = [20, 40, 60, 80, 100]
@@ -32,11 +32,11 @@ sizes = [20, 40, 60, 80, 100]
 ##############################################################################
 
 # Open the dataset previously saved for every hour bin 
-df_hourly = pd.read_csv(path_data+"A1_downstream_communities/"+filename)
+df_hourly = pd.read_csv(path_data+"probability_vectors/"+filename)
 print(df_hourly.shape)
 
 # Load the list of species in the study
-species_list_final = pd.read_excel(path_data + "raw_data/birdnet_species_list/PhD_A1_species_list.xlsx")
+species_list_final = pd.read_excel(path_data + "A1_species_list.xlsx")
 print(species_list_final.shape)
 
 # Extract stabilization predicted by the GAM model 

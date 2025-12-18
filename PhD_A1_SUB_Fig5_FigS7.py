@@ -20,21 +20,21 @@ from matplotlib import gridspec
 study_area = ["CAMPAN","KILPIS"][1]
 
 # General path to access data
-path_data = "C:/Users/data/" 
+path_data = "/data/" 
 
 # Name of the CSV file containing the probability of occurrence vectors
-filename = "df_"+study_area+"_weekly_occurrences_VS_SubsetSize_reduced.csv"
+filename = "A1_weekly_probability_KILPIS.csv"
 
 ##############################################################################
 ## Open the dataframe with probability of occurrence vectors ##
 ##############################################################################
 
 # Open the dataset previously saved for every hour bin 
-df_weekly = pd.read_csv(path_data+"A1_downstream_communities/"+filename)
+df_weekly = pd.read_csv(path_data+"probability_vectors/"+filename)
 print(df_weekly.shape)
 
 # Load the list of species in the study
-species_list_final = pd.read_excel(path_data + "raw_data/birdnet_species_list/PhD_A1_species_list.xlsx")
+species_list_final = pd.read_excel(path_data + "A1_species_list.xlsx")
 print(species_list_final.shape)
 
 # Extract stabilization predicted by the GAM model 
@@ -171,19 +171,8 @@ plt.show()
 
 # Convert months to weeks 
 def get_absence_weeks(arrival_month, departure_month):
-    """
-    Calculates the range of week numbers (1-52/53) when a species is absent.
-    The species is absent from the departure_month up to arrival_month.
-    This uses a standard approximation where:
-    - Month 1 is approx weeks 1-4
-    - Month 12 is approx weeks 48-52/53
-    """
     
-    # Simple, common approximation: 4 weeks/month, adjusted for wrap-around
-    # You might want a more precise day-of-year to week number conversion
-    # if you have precise date data, but this serves for plotting.
-    
-    # Calculate approx week number for the *start* of the month
+    # Calculate approx week number for the "start" of the month
     def month_to_start_week(month):
         if month == 1:
             return 1
